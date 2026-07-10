@@ -2,7 +2,7 @@
 
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { navItems } from "@/data/content";
+import { navItems } from "@/lib/navigation";
 
 export function Header() {
   const [open, setOpen] = useState(false);

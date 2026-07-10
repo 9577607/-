@@ -1,7 +1,11 @@
 import { ArrowRight } from "lucide-react";
-import { topics } from "@/data/content";
+import type { Topic } from "@/lib/content";
 
-export function TopicSection() {
+type TopicSectionProps = {
+  topics: Topic[];
+};
+
+export function TopicSection({ topics }: TopicSectionProps) {
   return (
     <section className="content-section" id="topics">
       <div className="section-heading">

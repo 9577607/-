@@ -1,7 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/data/content";
+import type { Project } from "@/lib/content";
 
-export function ProjectSection() {
+type ProjectSectionProps = {
+  projects: Project[];
+};
+
+export function ProjectSection({ projects }: ProjectSectionProps) {
   return (
     <section className="content-section" id="projects">
       <div className="section-heading">

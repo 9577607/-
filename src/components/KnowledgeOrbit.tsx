@@ -1,8 +1,13 @@
 import { ArrowRight, FileText } from "lucide-react";
-import { notes, stats } from "@/data/content";
+import type { Note } from "@/lib/content";
 import { GlassPanel } from "./GlassPanel";
 
-export function KnowledgeOrbit() {
+type KnowledgeOrbitProps = {
+  notes: Note[];
+  stats: { label: string; value: string }[];
+};
+
+export function KnowledgeOrbit({ notes, stats }: KnowledgeOrbitProps) {
   return (
     <div className="orbit-stage" aria-label="知识轨道概览">
       <div className="orbit-visual" aria-hidden="true">

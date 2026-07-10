@@ -1,7 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import { notes } from "@/data/content";
+import type { Note } from "@/lib/content";
 
-export function LatestNotes() {
+type LatestNotesProps = {
+  notes: Note[];
+};
+
+export function LatestNotes({ notes }: LatestNotesProps) {
   return (
     <section className="content-section" id="notes">
       <div className="section-heading">

@@ -2,7 +2,7 @@
 
 import { Search } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
-import { searchItems } from "@/data/content";
+import type { SearchItem } from "@/lib/content";
 
 function openResult(href: string) {
   const target = document.querySelector(href);
@@ -12,22 +12,26 @@ function openResult(href: string) {
   }
 }
 
-export function SearchBar() {
+type SearchBarProps = {
+  items: SearchItem[];
+};
+
+export function SearchBar({ items }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const results = useMemo(() => {
     const keyword = query.trim().toLowerCase();
-    if (!keyword) return searchItems.slice(0, 5);
-    return searchItems
+    if (!keyword) return items.slice(0, 5);
+    return items
       .filter((item) =>
         [item.title, item.type, item.detail].some((value) =>
           value.toLowerCase().includes(keyword)
         )
       )
       .slice(0, 6);
-  }, [query]);
+  }, [items, query]);
 
   return (
     <div className="search-shell">

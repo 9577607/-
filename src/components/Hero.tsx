@@ -1,8 +1,15 @@
 import { ArrowRight } from "lucide-react";
+import type { Note, SearchItem } from "@/lib/content";
 import { KnowledgeOrbit } from "./KnowledgeOrbit";
 import { SearchBar } from "./SearchBar";
 
-export function Hero() {
+type HeroProps = {
+  notes: Note[];
+  searchItems: SearchItem[];
+  stats: { label: string; value: string }[];
+};
+
+export function Hero({ notes, searchItems, stats }: HeroProps) {
   return (
     <section className="hero-section" id="top">
       <div className="hero-copy">
@@ -15,7 +22,7 @@ export function Hero() {
           把经验写成知识，让思考持续生长。
         </p>
         <div className="reveal reveal-four">
-          <SearchBar />
+          <SearchBar items={searchItems} />
         </div>
         <div className="hero-actions reveal reveal-five">
           <a className="primary-action" href="#notes">
@@ -28,7 +35,7 @@ export function Hero() {
         </div>
       </div>
       <div className="hero-orbit reveal reveal-three">
-        <KnowledgeOrbit />
+        <KnowledgeOrbit notes={notes} stats={stats} />
       </div>
     </section>
   );
