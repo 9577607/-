@@ -14,7 +14,7 @@ export function LatestNotes({ notes }: LatestNotesProps) {
       </div>
       <div className="note-list">
         {notes.map((note) => (
-          <article className="note-row" id={`note-${note.id}`} key={note.id}>
+          <a className="note-row" href={`/notes/${note.id}`} id={`note-${note.id}`} key={note.id}>
             <div>
               <span className="note-category">{note.category}</span>
               <h3>{note.title}</h3>
@@ -23,11 +23,9 @@ export function LatestNotes({ notes }: LatestNotesProps) {
             <div className="note-meta">
               <span>{note.date}</span>
               <span>{note.readTime}</span>
-              <a aria-label={`查看 ${note.title}`} href={`#note-${note.id}`}>
-                <ArrowUpRight aria-hidden="true" className="h-5 w-5" />
-              </a>
+              <ArrowUpRight aria-hidden="true" className="h-5 w-5" />
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </section>

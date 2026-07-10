@@ -5,6 +5,11 @@ import { useMemo, useRef, useState } from "react";
 import type { SearchItem } from "@/lib/content";
 
 function openResult(href: string) {
+  if (!href.startsWith("#")) {
+    window.location.href = href;
+    return;
+  }
+
   const target = document.querySelector(href);
   if (target) {
     target.scrollIntoView({ behavior: "smooth", block: "center" });

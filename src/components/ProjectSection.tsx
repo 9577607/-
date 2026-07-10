@@ -22,7 +22,7 @@ export function ProjectSection({ projects }: ProjectSectionProps) {
                 <span key={tag}>{tag}</span>
               ))}
             </div>
-            <a href={`#project-${project.id}`}>
+            <a href={project.githubUrl} rel="noreferrer" target="_blank">
               查看项目
               <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
             </a>

@@ -24,6 +24,7 @@ export type Project = {
   name: string;
   description: string;
   tags: string[];
+  githubUrl: string;
   body: string;
 };
 
@@ -80,6 +81,7 @@ export function getProjects(): Project[] {
     name: String(data.name ?? slug),
     description: String(data.description ?? ""),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    githubUrl: String(data.githubUrl ?? `#project-${slug}`),
     body
   }));
 }
@@ -87,15 +89,15 @@ export function getProjects(): Project[] {
 export function getTopics(notes = getNotes()): Topic[] {
   const topicCopy: Record<string, string> = {
     "AI与效率": "工具、提示词、自动化与个人工作流。",
+    AI实践: "RAG、Agent、MCP 与企业智能应用落地。",
     产品思考: "需求判断、体验结构和长期价值。",
     本地生活: "城市观察、消费体验和生活方式。",
     品牌运营: "内容表达、传播节奏和个人品牌。",
     项目复盘: "从交付现场回收方法和模型。",
-    长期主义: "复利、耐心和可持续的个人系统。",
-    AI实践: "AI 协作、上下文管理和真实项目应用。"
+    长期主义: "复利、耐心和可持续的个人系统。"
   };
 
-  const fixedOrder = ["AI与效率", "产品思考", "本地生活", "品牌运营", "项目复盘", "长期主义"];
+  const fixedOrder = ["AI与效率", "AI实践", "产品思考", "本地生活", "品牌运营", "项目复盘", "长期主义"];
   const counts = new Map<string, number>();
 
   notes.forEach((note) => {
@@ -129,7 +131,7 @@ export function getSearchItems(
       type: "Note" as const,
       title: item.title,
       detail: `${item.category} · ${item.readTime}`,
-      href: `#note-${item.id}`
+      href: `/notes/${item.id}`
     })),
     ...topics.map((item) => ({
       id: item.id,
@@ -143,7 +145,7 @@ export function getSearchItems(
       type: "Project" as const,
       title: item.name,
       detail: item.tags.join(" · "),
-      href: `#project-${item.id}`
+      href: item.githubUrl
     }))
   ];
 }
